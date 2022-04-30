@@ -1,61 +1,216 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://user-images.githubusercontent.com/104678768/166114241-81952064-62a4-4539-bc10-02b01fb8a73b.png" ></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# SAMOOHYA The social media tool
+<!--
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/venturedrake/laravel-crm.svg?style=flat-square)](https://packagist.org/packages/venturedrake/laravel-crm)
+[![Build Status](https://travis-ci.com/venturedrake/laravel-crm.svg?branch=master)](https://travis-ci.com/venturedrake/laravel-crm)
+[![StyleCI](https://github.styleci.io/repos/291847143/shield?branch=master)](https://github.styleci.io/repos/291847143?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1946e83f51de4a0eb430a8e0a1aab3cf)](https://app.codacy.com/gh/venturedrake/laravel-crm?utm_source=github.com&utm_medium=referral&utm_content=venturedrake/laravel-crm&utm_campaign=Badge_Grade_Settings)
+[![Total Downloads](https://img.shields.io/packagist/dt/venturedrake/laravel-crm.svg?style=flat-square)](https://packagist.org/packages/venturedrake/laravel-crm)
+-->
+Manage Sechedule and Post in various social media platforms from single dashboard used Graph API of facebook(tm) Now Meta(Tm)  built with Laravel. supports facebook , Twitter, Instagram, Pinterest , LinkedIn and Many more!. 
 
-## About Laravel
+> ⚠️ Warning: This is a pre-release version that is not recommended for production use.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Use Cases
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Use as a complete social media dashboard
+- Support post scheduling
+- Run Campaign
+- Analyatics
+- Create trending hashtags
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+ - Dashboard
+ - Multiple Platform support
+ - Media management
+ - Sheduling
+ - Tracking and Anlytics
+ - Cureted content
+ - Throtaling to prevent blacklisting
+ - Easy deployment and upgradre capabilities
+ - Laravel 7
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requirements
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP**: 7.3 or higher
+- **For MySQL users**: 5.7.23 or higher
+- **For MariaDB users**: 10.2.7 or higher
+- **Laravel** 7 or higher
 
-## Laravel Sponsors
+## Installation (10-15mins)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Step 1. Clone Repo 
+git clone 
 
-### Premium Partners
+#### Step 2. Make sure you have set up Laravel auth in your project
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+https://laravel.com/docs/6.x/authentication
+
+#### Step 3. Require the current package using composer:
+
+```bash
+composer require venturedrake/laravel-crm:^0.10
+```
+
+#### Step 4. Publish the migrations, config & assets
+
+```bash
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="config"
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="assets" --force
+```
+
+#### Step 5. Update the various config settings in the published config file:
+
+After publishing the package assets a configuration file will be located at <code>config/laravel-crm.php</code>
+
+Please read the comments in this file for each setting. Most can be left as the default, however you will need to update the "CRM Owner" setting to access the CRM initially. 
+    
+Please note if you set the route_prefix to blank or null you will need to update the default <code>routes/web.php</code> file. All the crm routes are managed by the package, so it should look just as per below after removing the default welcome route and redirecting the default /home route to the dashboard. 
+
+###### Laravel 7 and below:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Auth::routes();
+
+Route::get('/home', function (){
+    return redirect('/');
+});
+```
+
+###### Laravel 8+:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+```
+
+#### Step 6. Run migrations:
+
+```bash
+php artisan migrate
+```
+
+#### Step 7. Run database seeder:
+
+```bash
+php artisan db:seed --class="VentureDrake\LaravelCrm\Database\Seeders\LaravelCrmTablesSeeder"
+```
+
+#### Step 8. Update User Model
+
+- Add the HasCrmAccess, HasCrmTeams, HasRoles traits.
+- Add the Lab404\AuthChecker\Models\HasLoginsAndDevices trait and the Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface interface.
+
+```php
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use VentureDrake\LaravelCrm\Traits\HasCrmAccess;
+use VentureDrake\LaravelCrm\Traits\HasCrmTeams;
+use Lab404\AuthChecker\Models\HasLoginsAndDevices;
+use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
+
+class User extends Authenticatable implements HasLoginsAndDevicesInterface
+{
+    use HasRoles;
+    use HasCrmAccess;
+    use HasCrmTeams;
+    use HasLoginsAndDevices;
+
+    // ...
+}
+```
+#### Step 9. Register at least one user and log in or if you already have a user login with the crm owner you set in step 5
+
+Access the crm to register/login at http://your-project-url/crm
+
+Note if you modified the route_prefix setting from the default the above url will change dependent on that setting.
+
+## Upgrade
+
+### Upgrading from >= 0.2
+
+#### Step 1. Run the following to the update migrations and publish assets:
+
+```bash
+composer require venturedrake/laravel-crm::^0.10
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="config"
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="assets" --force
+php artisan migrate
+```
+
+#### Step 2. Run the database seeder
+
+```bash
+php artisan db:seed --class="VentureDrake\LaravelCrm\Database\Seeders\LaravelCrmTablesSeeder"
+```
+
+### Upgrading from < 0.2
+
+#### Step 1. Run the following to the update package:
+
+```bash
+composer require venturedrake/laravel-crm::^0.9
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="config"
+php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="assets" --force
+php artisan migrate
+```
+
+#### Step 2. Delete previously published package views located in <code>resources/views/vendor/laravel-crm/*</code>
+
+#### Step 3. Add HasCrmAccess, HasCrmTeams & HasRoles traits to App\User model, see installation Step 8.
+
+<!--- ## Usage --->
+
+## Testing
+
+``` bash
+composer test
+```
+
+### Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Roadmap
+
+ - Tasks
+ - Files / Documents
+ - Calendar (Calls, Meetings, Reminders)
+ - Custom Fields
+ - Activity Feed / Timelines
+ - CSV Import / Export
+
+## Feedback
+
+Participate in the [discord community](https://discord.gg/rygVyyGSHj)
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Code of Conduct
+### Security
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+If you discover any security related issues, please email andrew@venturedrake.com instead of using the issue tracker.
 
-## Security Vulnerabilities
+## Credits
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- [Andrew Drake](https://github.com/venturedrake)
+- [All Contributors](../../contributors)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
