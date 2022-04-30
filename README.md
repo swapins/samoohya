@@ -41,139 +41,24 @@ Manage Sechedule and Post in various social media platforms from single dashboar
 
 ## Installation (10-15mins)
 
-#### Step 1. Clone Repo 
-git clone 
+#### Step 1. Clone Repo and Extract
+git clone https://github.com/swapins/samoohya.git
 
-#### Step 2. Make sure you have set up Laravel auth in your project
-
-https://laravel.com/docs/6.x/authentication
-
-#### Step 3. Require the current package using composer:
+#### Step 2. Install using composer:
 
 ```bash
-composer require venturedrake/laravel-crm:^0.10
+composer install
 ```
 
-#### Step 4. Publish the migrations, config & assets
+#### Step 3. Create ENV and generate app key
 
 ```bash
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="migrations"
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="config"
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="assets" --force
+php artisan key:generate
 ```
 
-#### Step 5. Update the various config settings in the published config file:
+#### Step 5. Update the various Social media appas and get relavent tokens:
 
-After publishing the package assets a configuration file will be located at <code>config/laravel-crm.php</code>
 
-Please read the comments in this file for each setting. Most can be left as the default, however you will need to update the "CRM Owner" setting to access the CRM initially. 
-    
-Please note if you set the route_prefix to blank or null you will need to update the default <code>routes/web.php</code> file. All the crm routes are managed by the package, so it should look just as per below after removing the default welcome route and redirecting the default /home route to the dashboard. 
-
-###### Laravel 7 and below:
-
-```php
-<?php
-
-use Illuminate\Support\Facades\Route;
-
-Auth::routes();
-
-Route::get('/home', function (){
-    return redirect('/');
-});
-```
-
-###### Laravel 8+:
-
-```php
-<?php
-
-use Illuminate\Support\Facades\Route;
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-```
-
-#### Step 6. Run migrations:
-
-```bash
-php artisan migrate
-```
-
-#### Step 7. Run database seeder:
-
-```bash
-php artisan db:seed --class="VentureDrake\LaravelCrm\Database\Seeders\LaravelCrmTablesSeeder"
-```
-
-#### Step 8. Update User Model
-
-- Add the HasCrmAccess, HasCrmTeams, HasRoles traits.
-- Add the Lab404\AuthChecker\Models\HasLoginsAndDevices trait and the Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface interface.
-
-```php
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
-use VentureDrake\LaravelCrm\Traits\HasCrmAccess;
-use VentureDrake\LaravelCrm\Traits\HasCrmTeams;
-use Lab404\AuthChecker\Models\HasLoginsAndDevices;
-use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
-
-class User extends Authenticatable implements HasLoginsAndDevicesInterface
-{
-    use HasRoles;
-    use HasCrmAccess;
-    use HasCrmTeams;
-    use HasLoginsAndDevices;
-
-    // ...
-}
-```
-#### Step 9. Register at least one user and log in or if you already have a user login with the crm owner you set in step 5
-
-Access the crm to register/login at http://your-project-url/crm
-
-Note if you modified the route_prefix setting from the default the above url will change dependent on that setting.
-
-## Upgrade
-
-### Upgrading from >= 0.2
-
-#### Step 1. Run the following to the update migrations and publish assets:
-
-```bash
-composer require venturedrake/laravel-crm::^0.10
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="migrations"
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="config"
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="assets" --force
-php artisan migrate
-```
-
-#### Step 2. Run the database seeder
-
-```bash
-php artisan db:seed --class="VentureDrake\LaravelCrm\Database\Seeders\LaravelCrmTablesSeeder"
-```
-
-### Upgrading from < 0.2
-
-#### Step 1. Run the following to the update package:
-
-```bash
-composer require venturedrake/laravel-crm::^0.9
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="migrations"
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="config"
-php artisan vendor:publish --provider="VentureDrake\LaravelCrm\LaravelCrmServiceProvider" --tag="assets" --force
-php artisan migrate
-```
-
-#### Step 2. Delete previously published package views located in <code>resources/views/vendor/laravel-crm/*</code>
-
-#### Step 3. Add HasCrmAccess, HasCrmTeams & HasRoles traits to App\User model, see installation Step 8.
-
-<!--- ## Usage --->
 
 ## Testing
 
@@ -196,7 +81,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Feedback
 
-Participate in the [discord community](https://discord.gg/rygVyyGSHj)
+contact at vidyaswapin@gmail.com
 
 ## Contributing
 
@@ -204,13 +89,14 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email andrew@venturedrake.com instead of using the issue tracker.
+If you discover any security related issues, please email vidyaswapin@gmail.com instead of using the issue tracker.
 
 ## Credits
 
-- [Andrew Drake](https://github.com/venturedrake)
+- [Swapin vidya](https://github.com/swapins)
+<!--
 - [All Contributors](../../contributors)
-
+-->
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
